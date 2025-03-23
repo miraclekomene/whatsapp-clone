@@ -1,0 +1,198 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: border-box;
+    font-family: sans-serif;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+.card{
+    border: 1px solid black;
+    width: 270px;
+    height: 500px;
+    border-radius: 5px;
+    background: url(../images/WhatsApp.jpeg);
+}
+
+.bar{
+    /* height: 15px; */
+    background-color: rgb(34, 31, 31);
+    padding: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bar h6{
+    height: 10px;
+    color: #fff;
+}
+.bar img{
+    height: 12px;
+    margin: 0 2px;
+}
+
+.head{
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(34, 31, 31);
+}
+.head img{
+    height: 20px;
+}
+.head h3{
+    color: #fff;
+    font-size: 1em;
+}
+.head-first-img{
+    display: flex;
+    align-items: center;
+}
+.head-first-img{
+    display: flex;
+    align-items: center;
+}
+.head-first-img .user-icon{
+    height: 35px;
+    /* border-radius: 50px; */
+}
+
+/* body */
+.message{
+    padding: 0 10px 5px;
+    overflow-y: auto;
+    position: relative;
+    height: 360px;
+}
+
+.message .reciever{
+    background-color: grey;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 150px;
+    word-wrap: break-word;
+    position: relative;
+    margin-right: 4.5rem;
+    float: left;
+    
+}
+
+.message .reciever.first::after, .message .sender.first::after{
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.message .reciever::after {
+    border-width: 10px  10px 0px 10px;
+    border-color: grey transparent;
+    top: 0;
+    left: -9px;
+}
+.message .reciever:first-child {
+    margin: 16px 0 8px;
+    border-top-left-radius: 0;
+}
+
+.message .sender{
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    background: #e1ffc7;
+    max-width: 150px;
+    margin-left: 4.5rem;
+    float: right;
+    position: relative;
+}
+
+.message .sender:first-child{
+    margin: 16px 0 8px;
+    border-top-right-radius: 0;
+    display: block;
+}
+
+.message .sender::after{
+    border-width: 10px 10px 0 10px;
+    border-color: #e1ffc7 transparent;
+    top:0;
+    right: -8px;
+}
+.message::-webkit-scrollbar{
+    width: 3px;
+}
+.message::-webkit-scrollbar-thumb{
+    background-color: grey;
+}
+.footer input::-webkit-input-placeholder{
+    color: #d4d3d3;
+}
+.footer{
+    display: flex;
+    align-items: center;
+}
+.footer img{
+    height: 20px;
+}
+.footer .emoji{
+    background-color: gray;
+    padding:11px 10px 10px 10px;
+    border: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3px;
+}
+.footer input{
+    background-color: gray;
+    border: none;
+    outline: none;
+    padding: 13px 10px;
+    margin-top: 3px;
+    color: rgb(214, 211, 211);
+    position: relative;
+    left: -2px;
+    width: 100%;
+}
+.footer .clip{
+    background-color: gray;
+    border: none;
+    padding: 11px 10px 10px 10px;
+    margin-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: -3px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-right: 3px;
+}
+.footer .clip .clip-image{
+    margin-right: 10px;
+}
+.footer .footer-mic{
+    background-color: green;
+    border: none;
+    border-radius: 20px;
+    padding: 11px 10px 10px 10px;
+    margin-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: -3px;
+}
+
