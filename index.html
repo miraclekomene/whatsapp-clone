@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Whatsapp</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="content">
+            <div class="bar">
+                <h6>5:26 PM</h6>
+                <div class="bar-img">
+                    <img src="./images/network-bar.png" alt="">
+                    <img src="./images/charged-battery.png" alt="">
+                </div>
+            </div>
+            <div class="head">
+                <div class="head-first-img">
+                    <img src="./images/back-arrow.png" alt="">
+                    <!-- <img src="./images/user.png" alt="" class="user-icon"> -->
+                    <img src="./images/me.jpg" alt="" class="user-icon" style="border-radius: 50px; margin: 4px 6px;">
+                    <h3>Miracle</h3>
+                    <img src="./images/tick_no_bg.png" alt="">
+                </div>
+                <div class="head-second-img">
+                    <img src="./images/video-camera.png" alt="">
+                    <img src="./images/call.png" alt="">
+                    <img src="./images/menu-vertical.png" alt="">
+                </div>
+            </div>
+
+            <div class="message">
+                <div class="reciever first">
+                    how far na
+                </div>
+                <div class="reciever">
+                    <!-- how your side? I can see you are enjoying -->
+                     congrat for sending me the code
+                </div>
+                <div class="sender first">
+                    fine
+                </div>
+                <div class="sender">
+                    and you?
+                </div>
+
+                <div class="reciever first">
+                    Doing great
+                </div>
+                <div class="reciever">
+                    I thank God. So how is work?
+                </div>
+
+                <div class="sender first">
+                    Work Is fine.
+                </div>
+                <div class="sender">
+                    still pushing hard. thank you ifieanyi
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="emoji">
+                    <img src="./images/smile.png" alt="">
+                </div>
+                <input type="text" placeholder="Message">
+                <div class="clip">
+                    <img src="./images/clip.png" alt="" class="clip-image">
+                    <img src="./images/camera.png" alt="">
+                </div>
+                <div class="footer-mic">
+                    <img src="./images/mic.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="download-as-image">Download as Image</button>
+    <br><br>
+    <button id="downloadPdf">Download as PDF</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    <script>
+        function captureElement(element, callback) {
+            setTimeout(() => {
+                html2canvas(element, {
+                    scrollY: -window.scrollY,
+                    scale: 2, // Increase the scale for better quality
+                    useCORS: true // Enable if there are cross-origin images
+                }).then(callback);
+            }, 100); // Delay to allow the DOM to fully render
+        }
+
+        document.getElementById('download-as-image').addEventListener('click', function() {
+            captureElement(document.getElementById('content'), function(canvas) {
+                var link = document.createElement('a');
+                link.href = canvas.toDataURL();
+                link.download = 'capture.png';
+                link.click();
+            });
+        });
+
+        document.getElementById('downloadPdf').addEventListener('click', function() {
+            captureElement(document.getElementById('content'), function(canvas) {
+                var imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
+                var pdf = new jsPDF('p', 'mm', 'a4'); // Use 'mm' for better precision
+                var imgWidth = 210; // A4 width in mm
+                var pageHeight = 295; // A4 height in mm
+                var imgHeight = canvas.height * imgWidth / canvas.width;
+                var heightLeft = imgHeight;
+
+                var position = 0;
+
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+
+                pdf.save('content.pdf');
+            });
+        });
+    </script>
+
+
+    <!-- <button id="download-as-image">Download as Image</button>
+    <br><br>
+    <button id="downloadPdf">Download as PDF</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+
+    <script>
+        document.getElementById('download-as-image').addEventListener('click', function() {
+            html2canvas(document.getElementById('capture')).then(function(canvas) {
+                var link = document.createElement('a');
+                link.href = canvas.toDataURL();
+                link.download = 'capture.png';
+                link.click();
+            });
+        });
+
+        document.getElementById('downloadPdf').addEventListener('click', function() {
+            html2canvas(document.getElementById('content'), {
+                scale: 2, // Increase the scale for better quality
+                useCORS: true // Enable if there are cross-origin images
+            }).then(function(canvas) {
+                var imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
+                var pdf = new jsPDF('p', 'mm', 'a4'); // Use 'mm' for better precision
+                var imgWidth = 210; // A4 width in mm
+                var pageHeight = 295; // A4 height in mm
+                var imgHeight = canvas.height * imgWidth / canvas.width;
+                var heightLeft = imgHeight;
+
+                var position = 0;
+
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+
+                pdf.save('content.pdf');
+            });
+        });
+    </script> -->
+</body>
+</html>
